@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nearby Locations</title>
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+    />
+    <style>
+        /* Overall Page Styling */
+        body {
+            background-color: #fff;
+            color: #333;
+            font-family: Arial, sans-serif;
+        }
+
+        h1, p {
+            color: crimson;
+        }
+
+        /* Increased Font Size */
+        h1 {
+            font-size: 4rem;
+        }
+
+        p {
+            font-size: 1.2rem;
+        }
+
+        .form-control {
+            font-size: 1.1rem; /* Larger Text in Inputs */
+            border: 2px solid #ddd;
+            transition: all 0.3s ease-in-out;
+            border-radius: 8px;
+        }
+
+        /* Glowing Effect for Input Boxes */
+        .form-control:focus,
+        .form-control:hover {
+            outline: none;
+            border-color: crimson;
+            box-shadow: 0 0 12px rgba(220, 20, 60, 0.7);
+            transform: scale(1.05);
+        }
+
+        /* Input Fields Layout */
+        .form-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px; /* Reduced Spacing Between Boxes */
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            width: 22%; /* Fit Boxes in One Line */
+        }
+
+        /* Buttons */
+        .btn-primary, #addBtn {
+            background-color: crimson;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            padding: 10px 20px;
+            transition: all 0.3s ease-in-out;
+            border-radius: 8px;
+        }
+
+        .btn-primary:hover, #addBtn:hover {
+            background-color: darkred;
+            transform: scale(1.05);
+            box-shadow: 0px 4px 10px rgba(220, 20, 60, 0.4);
+        }
+
+        /* List Items Styling */
+        .list-group-item {
+            border: 1px solid crimson;
+            margin-bottom: 19px;
+            padding: 9px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .list-group-item:hover {
+            background-color: #f9f9f9;
+            transform: scale(1.02);
+        }
+
+        /* Search Section */
+        .search-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+            position: relative;
+        }
+
+        .search-box {
+            border: 2px solid crimson;
+            border-radius: 25px;
+            padding: 10px 15px;
+            width: 50%;
+            font-size: 1.2rem;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .search-box:focus {
+            border-color: darkred;
+            outline: none;
+            box-shadow: 0px 4px 15px rgba(220, 20, 60, 0.4);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 30%;
+            font-size: 1.5rem;
+            color: crimson;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .search-icon:hover {
+            transform: scale(1.2);
+            color: darkred;
+        }
+        #list{
+            font-size:x-large;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Donate Now</h1>
+
+        <!-- Form for Adding Entries -->
+        <div class="form-row">
+            <input
+                type="text"
+                placeholder="Enter name"
+                class="form-control"
+                id="nameInput"
+            />
+            <input
+                type="text"
+                placeholder="Enter location"
+                class="form-control"
+                id="locationInput"
+            />
+            <input
+                type="text"
+                placeholder="Phone Number"
+                class="form-control"
+                id="numInput"
+            />
+            <select class="form-control" id="needInput">
+                <option value="">Select Blood Type</option>
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
+            </select>
+            <button class="btn btn-primary" id="addBtn">Add</button>
+        </div>
+
+        <!-- List of Locations -->
+        <ul class="list-group mt-5" id="list">
+            <li class="list-group-item">
+                <span class="text-danger font-weight-bold">Ankur</span>
+                <span class="badge badge-primary">Hisar</span>
+                <span class="badge badge-success">9898766654</span>
+                <span class="badge badge-warning">A+</span>
+            </li>
+            <li class="list-group-item">
+                <span class="text-danger font-weight-bold">Harry</span>
+                <span class="badge badge-primary">Delhi</span>
+                <span class="badge badge-success">7666548888</span>
+                <span class="badge badge-warning">B+</span>
+            </li>
+            <li class="list-group-item">
+                <span class="text-danger font-weight-bold">Rocky</span>
+                <span class="badge badge-primary">Agra</span>
+                <span class="badge badge-success">87666543333</span>
+                <span class="badge badge-warning">AB+</span>
+            </li>
+            <li class="list-group-item">
+                <span class="text-danger font-weight-bold">Parul</span>
+                <span class="badge badge-primary">Noida</span>
+                <span class="badge badge-success">88888766654</span>
+                <span class="badge badge-warning">O+</span>
+            </li>
+         
+        </ul>
+
+        <!-- Search Section -->
+        <div class="search-section">
+            <input
+                type="text"
+                placeholder="Search here..."
+                class="search-box"
+                id="filter"
+            />
+            <i class="search-icon fas fa-search"></i>
+        </div>
+    </div>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script>
+        // DOM Elements
+        const addBtn = document.getElementById("addBtn");
+        const list = document.getElementById("list");
+        const filter = document.getElementById("filter");
+
+        // Filter List Items
+        filter.addEventListener("input", (e) => {
+            const searchItem = e.target.value.toLowerCase();
+            const listItems = document.querySelectorAll(".list-group-item");
+
+            listItems.forEach((item) => {
+                const itemText = item.textContent.toLowerCase();
+                item.style.display = itemText.includes(searchItem) ? "block" : "none";
+            });
+        });
+
+        // Add New Item to the List
+        addBtn.addEventListener("click", () => {
+            const name = document.getElementById("nameInput").value.trim();
+            const location = document.getElementById("locationInput").value.trim();
+            const phone = document.getElementById("numInput").value.trim();
+            const bloodType = document.getElementById("needInput").value.trim();
+
+            if (!name || !location || !phone || !bloodType) {
+                alert("Please fill in all fields!");
+                return;
+            }
+
+            const liElement = document.createElement("li");
+            liElement.className = "list-group-item";
+            liElement.innerHTML = `
+                <span class="text-danger font-weight-bold">${name}</span>
+                <span class="badge badge-primary">${location}</span>
+                <span class="badge badge-success">${phone}</span>
+                <span class="badge badge-warning">${bloodType}</span>
+            `;
+
+            list.appendChild(liElement);
+
+            // Clear inputs
+            document.getElementById("nameInput").value = "";
+            document.getElementById("locationInput").value = "";
+            document.getElementById("numInput").value = "";
+            document.getElementById("needInput").value = "";
+        });
+    </script>
+</body>
+</html>
